@@ -1,3 +1,29 @@
-* {
-    margin: 0;
+i {
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.navbar {
+    background-color: #b185f8;
+    color: white;
+}
+
+
+nav a {
+    color: white !important;
+    font-size: 30px !important;
+    transition: all ease-in-out 0.5s;
+}
+
+nav a:hover {
+    transform: scale(0.5);
+}
+
+nav i:hover {
+    color: rgb(225, 224, 224);
+}
+
+main {
+    height: 90vh;
+    overflow: hidden;
 }
