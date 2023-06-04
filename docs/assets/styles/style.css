@@ -26,4 +26,30 @@ nav i:hover {
 main {
     height: 90vh;
     overflow: hidden;
+    flex-direction: column !important;
+}
+
+main input {
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 50px;
+    width: 10%;
+    transition: width 0.4s ease-in-out;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+main p {
+    font-size: 40px;
+    margin-right: 20px;
+    margin-bottom: 0;
+}
+
+.flex-col {
+    display: flex;
+    align-items: center;
+}
+
+.display-none {
+    display: none;
 }
