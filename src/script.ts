@@ -2,9 +2,10 @@ const linkInput = document.getElementById("link-input") as HTMLInputElement;
 const divEl = document.getElementById("result") as HTMLElement;
 const pTag = document.getElementById("result-text") as HTMLElement;
 const copyIcon = document.getElementById("copy") as HTMLElement;
+const inputDiv = document.getElementById("expand") as HTMLElement;
 
 const queryLinkAPI = async (longLink: string) => {
-    const apiURL = "https://jordans-api-production.up.railway.app/l";
+    const apiURL = "https://jlink.zip/l";
     const keyOptions = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let linkKey = "";
 
@@ -30,14 +31,6 @@ const queryLinkAPI = async (longLink: string) => {
     }
 };
 
-linkInput.addEventListener("focus", () => {
-    linkInput.setAttribute("style", "width: 80%");
-});
-linkInput.addEventListener("focusout", () => {
-    if (!linkInput.value) {
-        linkInput.removeAttribute("style");
-    }
-});
 copyIcon.addEventListener("click", () => {
     navigator.clipboard.writeText(pTag.textContent as string);
     copyIcon.classList.remove("fa-copy");
@@ -49,14 +42,13 @@ document.addEventListener("keydown", async (event) => {
             console.log("Nothing entered");
         }
 
-        const urlRegex: RegExp = /^(?:(?:https?|ftp):\/\/)?[^\s/$.?#]+\.[^\s]*$/i;
-        console.log(urlRegex.test(linkInput.value));
-
-        if (urlRegex.test(linkInput.value)) {
+        const startsWithHttp: RegExp = /^(?!https:\/\/|http:\/\/|ftp:\/\/).*/;
+        if (startsWithHttp.test(linkInput.value)) {
             const shortLink = await queryLinkAPI(linkInput.value);
 
             divEl.setAttribute("class", "flex-col");
             pTag.textContent = shortLink;
+            copyIcon.setAttribute("class", "fa-solid fa-copy");
         } else {
             console.log("Not a valid link");
         }
